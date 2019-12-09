@@ -1,0 +1,18 @@
+Package: UpAndDownPlots
+Type: Package
+Title: Displays Percentage and Absolute Changes
+Version: 0.3
+Author: Antony Unwin
+Maintainer: Antony Unwin <unwin@math.uni-augsburg.de>
+Description: Percentage and absolute changes are drawn for combinations of categorical variables in a hierarchical plot.
+Depends: R (>= 3.5.0)
+Imports: tidyverse, ggplot2, dplyr, tidyr, forcats, randomcoloR,
+        gridExtra, ggthemes
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+Suggests: knitr, rmarkdown, languageR, colorspace
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
+NeedsCompilation: no
+Packaged: 2019-12-09 16:45:54 UTC; antonyunwin2
