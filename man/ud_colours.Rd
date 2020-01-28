@@ -13,7 +13,7 @@ ud_colours(colours = c("grey75", "grey65", "red", "blue", "green"), colors,
 }
 \arguments{
   \item{colours}{
-A set of colours for UpAndDownplots.
+A set of colours for UpAndDown plots.
 
 The first one is used for filling bars and the second for the borders of bars;
 the third one is for colouring the dashed line for the overall percentage change;

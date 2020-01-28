@@ -1,5 +1,3 @@
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # UpAndDownPlots
 
 UpAndDown plots display percentage changes by height and absolute
@@ -7,9 +5,13 @@ changes by area for up to three hierarchical levels. They can visualise
 changes in indices, showing how the changes for sectors or for
 individual components contribute to the overall change.
 
-## Install in the usual way
+## Installation
 
-install.packages(“UpAndDownPlots”)
+`UpAndDownPlots` is only available from github at the moment.
+
+``` r
+devtools::install_github("heike/UpAndDown")
+```
 
 ## Example
 
@@ -18,12 +20,13 @@ What were the changes by the four age groups reported?
 
 ``` r
 library(UpAndDownPlots)
-popx <- UaDprep(NIpop, v1="y2011", v2="y2017", levs=c("age"), sortLev="orig")
-p1 <- UaDplot(popx, labelvar="age")
+popx <- ud_prep(NIpop, v1="y2011", v2="y2017", levs=c("age"), sortLev=c("orig"))
+
+p1 <- ud_plot(popx, labelvar="age")
 p1$uadl
 ```
 
-![](man/figures/README-unnamed-chunk-2-1.png)<!-- -->
+![](man/figures/README-unnamed-chunk-3-1.png)<!-- -->
 
 The 65+ age group increased by almost 20% and the 16-39 group actually
 declined. It is useful to note that the older group were less than half

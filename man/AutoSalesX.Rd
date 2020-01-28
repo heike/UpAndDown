@@ -5,7 +5,7 @@
 Sales of cars and vans in Germany by manufacturer (edited version of AutoSales).
 }
 \description{
-Sales of cars and vans in Germany for January through August in 2017 and 2018.  The market is divided into 14 segments and in the two years 2017 and 2018 there were 50 competing manufacturers.
+Sales of cars and vans in Germany for 2017 and 2018.  The market is divided into 14 segments and in the two years 2017 and 2018 there were 50 competing manufacturers.
 }
 \usage{data(AutoSalesX)}
 \format{
@@ -14,8 +14,8 @@ Sales of cars and vans in Germany for January through August in 2017 and 2018.  
     \item{\code{Sector}}{Car, Van, Other}
     \item{\code{Segment}}{Market segment}
     \item{\code{Manufacturer}}{Manufacturer}
-    \item{\code{sales17}}{Sales from January 2017 to August 2017}
-    \item{\code{sales18}}{Sales from January 2018 to August 2018}
+    \item{\code{sales17}}{Sales in 2017}
+    \item{\code{sales18}}{Sales in 2018}
    }
 }
 \details{

@@ -1,4 +1,4 @@
-export(ud_plot, ud_prep, ud_colours, sort4, dgroup)
+export(ud_plot, ud_prep, ud_colours, sort5, dgroup)
 import(tidyverse)
 import(ggplot2)
 import(dplyr)

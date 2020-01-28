@@ -8,7 +8,7 @@ Prepares data for drawing an UpAndDown plot
 Checks input parameters and sorts the data
 }
 \usage{
-ud_prep(data, weight=1, v1, v2, levs, sortLev)
+ud_prep(data, weight=1, v1, v2, levs, sortLev, reverse=c(FALSE, FALSE, FALSE))
 }
 \arguments{
   \item{data}{
@@ -27,7 +27,10 @@ the variable specifying the end value in the comparison
 up to three grouping variables to define the plot levels in order from highest to lowest
 }
   \item{sortLev}{
-how the grouping variables named in levs are to be sorted.  Each entry must be one of "orig", "base", "perc", "abs" (i.e., no sorting, sorting by initial value, sorting by percentage change, sorting by absolute change).
+how the grouping variables named in levs are to be sorted.  Each entry must be one of "orig", "base", "final", "perc", "abs" (i.e., no sorting, sorting by initial value, sorting by final value, sorting by percentage change, sorting by absolute change).
+}
+  \item{reverse}{
+whether a sorting is to be reversed or not.  Each entry must be TRUE or FALSE (the default)and is set separately for each level.
 }
 }
 \details{
@@ -41,6 +44,10 @@ the variables specifying the grouping levels for the plot
   \item{sortLev}{
 the sorting method used for each plot level
 }
+  \item{reverse}{
+whether any sortings should be reversed
+}
+
   \item{hx}{
 a summary of the nesting of the grouping variables
 }

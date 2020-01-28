@@ -21,20 +21,20 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 
 Ordering and sorting are important tools in statistical graphics.  Different arrangements offer different views of the data.  In UpAndDown plots, the ordering of the grouping levels can have a big influence.  In nested datasets, the order is given, but in non-nested ones the user has a choice.  A display of changes by district within age and gender will look very different to a display of changes by age within district and gender.
 
-The sortings of the individual levels can have a big influence too.  There are four options offered in the UpAndDownPlots package for sorting levels: no sorting ("orig", standing for the original order), sorting by intial value ("base", i.e. baseline), sorting by percentage change ("perc"), sorting by absolute change ("abs").
+The sortings of the individual levels can have a big influence too.  There are five options offered in the UpAndDownPlots package for sorting levels: no sorting ("orig", standing for the original order), sorting by intial value ("base", i.e. baseline), sorting by final value ("final"), sorting by percentage change ("perc"), sorting by absolute change ("abs").  With all five options you can also request the sorting to be in the reverse order by using the reverse parameter.
 
-## Comparing the four sortings
+## Comparing the five sortings
 
-To see what difference another sorting method might make, you can draw a set of four plots for the same grouping variable, one for each sorting method, using the `sort4` function.
+To see what difference another sorting method might make, you can draw a set of five plots for the same grouping variable, one for each sorting method, using the `sort5` function.
 
 ```{r fig.width=7, fig.height=7, fig.align='center'}
 library(UpAndDownPlots)
 library(tidyverse)
-xs <- sort4(NIpop, gvar="LGD2014_name", v1="y2011", v2="y2017")
+xs <- sort5(NIpop, gvar="LGD2014_name", v1="y2011", v2="y2017")
 gridExtra::grid.arrange(xs$uadl)
 ```
 
-Fig 1: UpAndDown plots for the four standard sortings of the district variable in the Northern Ireland population dataset.  Percentage change is often most useful, but absolute change can be relevant when there is a mixture of large and small categories.  For this situation sorting by the initial value ('base') can also be worth trying to emphasise the larger categories.
+Fig 1: UpAndDown plots for the five standard sortings of the district variable in the Northern Ireland population dataset.  Percentage change is often most useful, but absolute change can be relevant when there is a mixture of large and small categories.  For this situation sorting by the initial value ('base') can also be worth trying to emphasise the larger categories.
 
 The 'orig' option, meaning 'no sorting', can be used to apply sortings that are not included in the package.  With the Northern Ireland population data it could be interesting to order the districts within age groups by the ordering for the oldest age group.  The code first constructs a smaller dataset with that ordering and then a version of the original dataset with the new ordering.
 

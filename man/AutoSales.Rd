@@ -2,10 +2,10 @@
 \alias{AutoSales}
 \docType{data}
 \title{
-Sales of cars and vans in Germany for January to August 2017 and 2018.
+Sales of cars and vans in Germany in the years 2017 and 2018.
 }
 \description{
-Sales of cars and vans in Germany for January through August in 2017 and 2018.  The market is divided into 14 segments and in the two years 2017 and 2018 there were 50 competing manufacturers.
+Sales of cars and vans in Germany for 2017 and 2018.  The market is divided into 14 segments and in the two years 2017 and 2018 there were 50 competing manufacturers.
 }
 \usage{data(AutoSales)}
 \format{
@@ -16,8 +16,8 @@ Sales of cars and vans in Germany for January through August in 2017 and 2018.  
     \item{\code{ModelSeries}}{Full vehicle name reported by KBA}
     \item{\code{Manufacturer}}{Manufacturer}
     \item{\code{Model}}{Model name}
-    \item{\code{sales17}}{Sales from January 2017 to August 2017}
-    \item{\code{sales18}}{Sales from January 2018 to August 2018}
+    \item{\code{sales17}}{Sales in 2017}
+    \item{\code{sales18}}{Sales in 2018}
    }
 }
 \details{

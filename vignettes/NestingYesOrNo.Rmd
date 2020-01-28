@@ -31,7 +31,7 @@ k1 <- ud_plot(kk, labelvar="LGD2014_name")
 k1$uadl
 ```
 
-Fig 1: All LGD's increased in population over the six years and only a few areas recorded decreases.  Belfast, the largest LGD, had the second lowest increase, with Derry having the lowest.  The sorting of areas within districts by percentage change makes it easy to see the nesting.
+Fig 1: All LGD's increased in population over the six years and only a few areas recorded decreases.  Belfast, the largest LGD, had the second lowest increase, with Derry having the lowest.  The sorting of areas within districts by percentage change makes it easier to see the nesting.
 
 ## A non-nested plot
 
@@ -71,6 +71,6 @@ The patterns in this example are fairly similar, because male and female rates a
 
 ## Double-nesting -- another possible form
 
-One grouping variables can be separately nested in each of two other grouping variables ("double-nesting").  Take the `Car` sector of the `AutoSales` dataset and remove the X4 and OTHER models.  The variable `Model` is then nested in both `Segment` and `Manufacturer`.  The filtering is necessary because those model names appear in more than one segment.
+One grouping variable can be separately nested in each of two other grouping variables ("double-nesting").  Take the `Car` sector of the `AutoSales` dataset and remove the X4 and OTHER models.  The variable `Model` is then nested in both `Segment` and `Manufacturer`.  The filtering is necessary because otherwise a few model names are recorded in more than one segment and then the variables appear not to be nested.
 
 The package assumes that any double-nested variable is always last to be drawn and is nested inside the immediately preceding grouping variable.

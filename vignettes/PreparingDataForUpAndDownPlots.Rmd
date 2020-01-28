@@ -50,7 +50,7 @@ y2 <- ud_plot(yv, labelvar="Manufacturer", vscale=c(-20, 20))
 y2$uadl
 ```
 
-Fig 2: Percentage change in numbers of vehicles sold by manufacturer, comparing the first 8 months of 2017 with the first 8 of 2018, sorting by sales in 2017.  In percentage terms Audi and Opel did badly amongst the larger companies while Ford did best.  Nissan did particularly badly amongst the medium-sized companies, while Seat did very well.
+Fig 2: Percentage change in numbers of vehicles sold by manufacturer, comparing figures for 2018 with figures for 2017, sorting by sales in 2017.  In percentage terms Audi and Opel did badly amongst the larger companies while Ford did best.  Nissan did particularly badly amongst the medium-sized companies, while Seat did very well.
 
 Notice in Figure 2 how the percentage changes tend to increase as the companies get smaller.  A warning message says that 8 rectangles could not be drawn, meaning 8 percentage changes were too big to fit on the plot.  There is not space for all the manufacturer names as labels, but this only affects the companies with small initial sales in Figure 2.
 
@@ -78,7 +78,7 @@ The top ten percentage changes in the figure can be found using
 arrange(y3$level2, desc(percCh)) %>% top_n(10)
 ```
 
-The biggest change is due to VW introducing the T-ROC SUV in August 2017.  Sales up to the end of that month are recorded as 1851 with 35299 for the first 8 months of 2018.  Many people would say that the VW Tiguan and VW Touareg are SUVs, but the KBA report them in the Off-road sector.  Working with market share data is interesting but problematic.  Solutions can be to combine segments or to look at individual segments.  It depends what the aims of the analyses are.
+The biggest change is due to VW introducing the T-ROC SUV in August 2017.  Sales up to the end of that year are recorded as 1851 with 35299 in 2018.  Many people would say that the VW Tiguan and VW Touareg are SUVs, but the KBA report them in the Off-road sector.  Working with market share data is interesting but problematic.  Solutions can be to combine segments or to look at individual segments.  It depends what the aims of the analyses are.
 
 Combining the `SUV` and `Off-road` segments is shown in Figure 4.
 
