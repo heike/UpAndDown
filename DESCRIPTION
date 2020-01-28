@@ -16,3 +16,5 @@ VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 NeedsCompilation: no
 Packaged: 2020-01-24 12:04:52 UTC; antonyunwin2
+URL: https://heike.github.io/UpAndDown/
+BugReports: https://github.com/heike/UpAndDown/issues
