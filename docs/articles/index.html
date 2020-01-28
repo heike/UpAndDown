@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sales of cars and vans in Germany in the years 2017 and 2018. — AutoSalesGermany • UpAndDownPlots</title>
+<title>Articles • UpAndDownPlots</title>
 
 
 <!-- jquery -->
@@ -33,9 +33,7 @@
 
 
 
-<meta property="og:title" content="Sales of cars and vans in Germany in the years 2017 and 2018. — AutoSalesGermany" />
-<meta property="og:description" content="Sales of cars and vans in Germany for 2017 and 2018.  The market is divided into 14 segments and in the two years 2017 and 2018 there were 50 competing manufacturers." />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Articles" />
 
 
 
@@ -53,7 +51,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-article-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -117,52 +115,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Sales of cars and vans in Germany in the years 2017 and 2018.</h1>
-    
-    <div class="hidden name"><code>AutoSales.Rd</code></div>
+      <h1>Articles</h1>
     </div>
 
-    <div class="ref-description">
-    <p>Sales of cars and vans in Germany for 2017 and 2018.  The market is divided into 14 segments and in the two years 2017 and 2018 there were 50 competing manufacturers.</p>
+    <div class="section ">
+      <h3>All vignettes</h3>
+      <p class="section-desc"></p>
+
+      <ul>
+        <li><a href="DrawingUpAndDownPlots.html">Drawing UpAndDown plots</a></li>
+        <li><a href="NestingYesOrNo.html">Nesting, Yes or No?</a></li>
+        <li><a href="PreparingDataForUpAndDownPlots.html">Preparing data for UpAndDown plots</a></li>
+        <li><a href="Sortings.html">Sortings</a></li>
+      </ul>
     </div>
-
-    <pre class="usage"><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>AutoSales</span>)</pre>
-
-
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A data frame with 393 observations on the following 7 variables.</p><dl class='dl-horizontal'>
-    <dt><code>Sector</code></dt><dd><p>Car, Van, Other</p></dd>
-    <dt><code>Segment</code></dt><dd><p>The KBA splits the market into 14 segments</p></dd>
-    <dt><code>ModelSeries</code></dt><dd><p>Full vehicle name reported by KBA</p></dd>
-    <dt><code>Manufacturer</code></dt><dd><p>Manufacturer</p></dd>
-    <dt><code>Model</code></dt><dd><p>Model name</p></dd>
-    <dt><code>sales17</code></dt><dd><p>Sales in 2017</p></dd>
-    <dt><code>sales18</code></dt><dd><p>Sales in 2018</p></dd>
-   </dl>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The Kraftfahrt-Bundesamt (KBA, National Vehicle Authority in Germany) publishes spreadsheets of sales every month including year-to-date figures.  The full vehicle name has been split into manufacturer and model names.  NAs have been transformed to 0's.  The variable names and market segments have been anglicised.<br /></p>
-<p>A 'cleaned' and reduced version of the dataset is available as AutoSalesX in this package.</p>
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p>Kraftfahrt-Bundesamt <br />
-<a href='https://www.kba.de/DE/Statistik/Fahrzeuge/Neuzulassungen/MonatlicheNeuzulassungen/monatl_neuzulassungen_node.html'>https://www.kba.de/DE/Statistik/Fahrzeuge/Neuzulassungen/MonatlicheNeuzulassungen/monatl_neuzulassungen_node.html</a></p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>yy</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ud_prep.html'>ud_prep</a></span>(<span class='no'>AutoSales</span>, <span class='kw'>v1</span><span class='kw'>=</span><span class='st'>"sales17"</span>, <span class='kw'>v2</span><span class='kw'>=</span><span class='st'>"sales18"</span>, <span class='kw'>levs</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Segment"</span>), <span class='kw'>sortLev</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"perc"</span>))
-<span class='no'>y1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ud_plot.html'>ud_plot</a></span>(<span class='no'>yy</span>, <span class='kw'>labelvar</span><span class='kw'>=</span><span class='st'>"Segment"</span>)
-<span class='no'>y1</span>$<span class='no'>uadl</span></div><div class='img'><img src='AutoSales-1.png' alt='' width='700' height='433' /></div></pre>
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#source">Source</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
   </div>
 </div>
 
