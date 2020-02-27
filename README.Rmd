@@ -1,12 +1,13 @@
 ---
-output:
-  md_document:
-    variant: gfm
+title: "UpAndDownPlots"
+author: "Antony Unwin"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: github_document
 ---
 
 [![CRAN Status](http://www.r-pkg.org/badges/version/UpAndDownPlots)](https://cran.r-project.org/package=UpAndDownPlots) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/UpAndDownPlots)](http://www.r-pkg.org/pkg/UpAndDownPlots) 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Travis-CI Build Status](https://travis-ci.org/heike/UpAndDownPlots.svg?branch=master)](https://travis-ci.org/heike/UpAndDownPlots)
+[![Travis-CI Build Status](https://travis-ci.org/heike/UpAndDown.svg?branch=master)](https://travis-ci.org/heike/UpAndDown)
 [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/master)
 
 ```{r, echo = FALSE}
