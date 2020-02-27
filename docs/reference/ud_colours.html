@@ -66,7 +66,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UpAndDownPlots</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
       </span>
     </div>
 
@@ -146,7 +146,7 @@ the last one is for colouring the borders of a second grouping level (if there i
     </tr>
     <tr>
       <th>gcpal</th>
-      <td><p>A colour palette to use if bars are to be coloured by a grouping variable (the parameter groupColour in ud_plot).
+      <td><p>A colour palette to use if bars are to be coloured by a grouping variable (the parameter barColour in ud_plot).
 The default is the colorblind palette from ggthemes, which has 8 colours.  If more are needed, a palette is generated from the randomcoloR package, always using the same seed for replication purposes.
 The same procedure applies for a user-defined palette---if there are not enough colours, a randomcoloR palette is used.</p></td>
     </tr>
@@ -173,12 +173,12 @@ The same procedure applies for a user-defined palette---if there are not enough 
 <span class='no'>y2a</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ud_plot.html'>ud_plot</a></span>(<span class='no'>yw</span>, <span class='kw'>ud_control</span><span class='kw'>=</span><span class='fu'>ud_colours</span>(<span class='kw'>colours</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"lightblue1"</span>, <span class='st'>"grey50"</span>,
                <span class='st'>"red4"</span>, <span class='st'>"blue"</span>, <span class='st'>"green"</span>)))
 <span class='no'>y2a</span>$<span class='no'>uad</span></div><div class='img'><img src='ud_colours-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Using groupColour and the default palette</span>
+<span class='co'># Using barColour and the default palette</span>
 <span class='co'># The randomcoloR palette is used as there are more than 8 sectors.</span>
-<span class='no'>y2b</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ud_plot.html'>ud_plot</a></span>(<span class='no'>yw</span>, <span class='kw'>groupColour</span><span class='kw'>=</span><span class='st'>"Sector"</span>)
+<span class='no'>y2b</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ud_plot.html'>ud_plot</a></span>(<span class='no'>yw</span>, <span class='kw'>barColour</span><span class='kw'>=</span><span class='st'>"Sector"</span>)
 <span class='no'>y2b</span>$<span class='no'>uad</span></div><div class='img'><img src='ud_colours-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Using groupColour and a specified palette</span>
-<span class='no'>y2c</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ud_plot.html'>ud_plot</a></span>(<span class='no'>yw</span>, <span class='kw'>groupColour</span><span class='kw'>=</span><span class='st'>"Sector"</span>, <span class='kw'>ud_control</span><span class='kw'>=</span><span class='fu'>ud_colours</span>(
+<span class='co'># Using barColour and a specified palette</span>
+<span class='no'>y2c</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ud_plot.html'>ud_plot</a></span>(<span class='no'>yw</span>, <span class='kw'>levelColour</span><span class='kw'>=</span><span class='st'>"Sector"</span>, <span class='kw'>ud_control</span><span class='kw'>=</span><span class='fu'>ud_colours</span>(
        <span class='kw'>gcpal</span><span class='kw'>=</span><span class='kw pkg'>randomcoloR</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/randomcoloR/topics/distinctColorPalette'>distinctColorPalette</a></span>(<span class='kw'>k</span><span class='kw'>=</span><span class='fl'>20</span>)))
 <span class='no'>y2c</span>$<span class='no'>uad</span></div><div class='img'><img src='ud_colours-4.png' alt='' width='700' height='433' /></div></pre>
   </div>

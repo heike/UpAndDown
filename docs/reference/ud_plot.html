@@ -66,7 +66,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UpAndDownPlots</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
       </span>
     </div>
 
@@ -127,7 +127,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>ud_plot</span>(<span class='no'>outPrep</span>, <span class='kw'>b</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>totperc</span><span class='kw'>=</span><span class='st'>"yes"</span>, <span class='kw'>vscale</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>labelvar</span><span class='kw'>=</span><span class='kw'>NULL</span>,
-        <span class='kw'>groupColour</span><span class='kw'>=</span><span class='st'>"none"</span>, <span class='kw'>ud_control</span><span class='kw'>=</span><span class='fu'><a href='ud_colours.html'>ud_colours</a></span>())</pre>
+        <span class='kw'>levelColour</span><span class='kw'>=</span><span class='st'>"none"</span>, <span class='kw'>barColour</span><span class='kw'>=</span><span class='no'>levelColour</span>, <span class='kw'>ud_control</span><span class='kw'>=</span><span class='fu'><a href='ud_colours.html'>ud_colours</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,8 +153,12 @@
       <td><p>the name of the variable to be used for labelling.  If specified, it has to be one of the first two grouping variables.</p></td>
     </tr>
     <tr>
-      <th>groupColour</th>
-      <td><p>specifies a grouping variable to be used to colour the individual bars (the default is not to colour them).</p></td>
+      <th>levelColour</th>
+      <td><p>specifies by variable name which level will be coloured (even if there is only one level).  The default is not to colour them, other than grey for the top level bars.</p></td>
+    </tr>
+    <tr>
+      <th>barColour</th>
+      <td><p>specifies a character or factor variable to colour (fill) the bars.  The default is to use the levelColour variable itself.</p></td>
     </tr>
     <tr>
       <th>ud_control</th>
@@ -165,7 +169,8 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function takes the output from <code><a href='ud_prep.html'>ud_prep</a></code> and draws an UpAndDown plot showing percentage and absolute changes for up to three levels.  The levels may be nested or not.  There are a number of options for sorting, labelling, and colouring the displays.
-The plots produced are ggplot2 objects, so you can amend them---to some extent---yourself.</p>
+The plots produced are ggplot2 objects, so you can amend them---to some extent---yourself.
+Choosing a barColour variable with many different colours is generally not a good idea and takes a while to draw because of the lengthy legend.  See <code><a href='ud_colours.html'>ud_colours</a></code> for choosing palettes.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p></p>
