@@ -9,7 +9,7 @@ Function for drawing UpAndDown plots for up to 3 levels
 }
 \usage{
 ud_plot(outPrep, b=0, totperc="yes", vscale=NULL, labelvar=NULL,
-        groupColour="none", ud_control=ud_colours())
+        levelColour="none", barColour=levelColour, ud_control=ud_colours())
 }
 \arguments{
   \item{outPrep}{
@@ -27,9 +27,11 @@ sets the limits for the vertical axis scale.  Default limits are calculated from
   \item{labelvar}{
 the name of the variable to be used for labelling.  If specified, it has to be one of the first two grouping variables.
 }
-  \item{groupColour}{
-specifies a grouping variable to be used to colour the individual bars (the default is not to colour them).
-
+  \item{levelColour}{
+ specifies by variable name which level will be coloured (even if there is only one level).  The default is not to colour them, other than grey for the top level bars.
+}
+  \item{barColour}{
+specifies a character or factor variable to colour (fill) the bars.  The default is to use the levelColour variable itself. 
 }
   \item{ud_control}{
 a list of colours for UpAndDown plots. If omitted, \code{\link{ud_colours}} gives the defaults.
@@ -38,6 +40,7 @@ a list of colours for UpAndDown plots. If omitted, \code{\link{ud_colours}} give
 \details{
 This function takes the output from \code{\link{ud_prep}} and draws an UpAndDown plot showing percentage and absolute changes for up to three levels.  The levels may be nested or not.  There are a number of options for sorting, labelling, and colouring the displays.
 The plots produced are ggplot2 objects, so you can amend them---to some extent---yourself.
+Choosing a barColour variable with many different colours is generally not a good idea and takes a while to draw because of the lengthy legend.  See {\code{\link{ud_colours}}} for choosing palettes.
 }
 
 \value{
