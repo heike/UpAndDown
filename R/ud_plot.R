@@ -38,10 +38,10 @@ ud_plot <- function(outPrep, b=0, totperc="yes", vscale=NULL, labelvar=NULL,
   # Set the requested colours
   cy <- ud_control$colours
   gcpal <- ud_control$gcpal
-  
+
   # Check colour parameters
   if(!(levelColour %in% c(levs, "none"))) warning("levelColour name is not a level variable and will have no effect", call.=FALSE)
-  
+
   glev <- case_when(
       levelColour==levs[1] ~ 1,
       levelColour==levs[2] ~ 2,
@@ -59,12 +59,13 @@ ud_plot <- function(outPrep, b=0, totperc="yes", vscale=NULL, labelvar=NULL,
       lgC <- length(unique(INX$barColour))
            if (lgC > length(gcpal)) {
         set.seed(4711)
-        gcpal2 <- distinctColorPalette(lgC)
+        #gcpal2 <- randomcoloR::distinctColorPalette(lgC)
+        gxpal2 <- sample(colorspace::qualitative_hcl(n = lgC, l=80))
       } else {
       gcpal2 <- gcpal
       }
     }
-  
+
  # Check, if barColour is not a grouping variable, whether it can be used
     if(glev > 0) {
     txy <- table(INX[, c(levs[glev], "barColour")])
@@ -75,7 +76,7 @@ ud_plot <- function(outPrep, b=0, totperc="yes", vscale=NULL, labelvar=NULL,
     }
     }
 
-    
+
   # Calculate the cumulatives for the three levels (c1F, c2F, c3F)
   if (!(glev==1)) INX1 <- INX %>% mutate(totp=100*(sum(wt*v2)/sum(wt*v1)-1)) %>% group_by(c1F) %>%
     summarise(base=sum(wt*v1), perc=100*(sum(wt*v2)/base-1), totp=mean(totp)) %>% ungroup() %>%

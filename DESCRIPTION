@@ -11,7 +11,6 @@ Imports: tidyverse,
         dplyr, 
         tidyr, 
         forcats, 
-        randomcoloR,
         gridExtra, 
         ggthemes
 License: GPL (>= 2)

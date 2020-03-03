@@ -61,6 +61,7 @@ y2b$uad
 
 # Using barColour and a specified palette
 y2c <- ud_plot(yw, levelColour="Sector", ud_control=ud_colours(
-       gcpal=randomcoloR::distinctColorPalette(k=20)))
+       gcpal= colorspace::qualitative_hcl(n = 20)))
+       #randomcoloR::distinctColorPalette(k=20)))
 y2c$uad
 }
