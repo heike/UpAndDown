@@ -60,7 +60,7 @@ ud_plot <- function(outPrep, b=0, totperc="yes", vscale=NULL, labelvar=NULL,
            if (lgC > length(gcpal)) {
         set.seed(4711)
         #gcpal2 <- randomcoloR::distinctColorPalette(lgC)
-        gxpal2 <- sample(colorspace::qualitative_hcl(n = lgC, l=80))
+        gcpal2 <- sample(colorspace::qualitative_hcl(n = lgC, l=80))
       } else {
       gcpal2 <- gcpal
       }
