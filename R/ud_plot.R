@@ -43,38 +43,37 @@ ud_plot <- function(outPrep, b=0, totperc="yes", vscale=NULL, labelvar=NULL,
   if(!(levelColour %in% c(levs, "none"))) warning("levelColour name is not a level variable and will have no effect", call.=FALSE)
 
   glev <- case_when(
-      levelColour==levs[1] ~ 1,
-      levelColour==levs[2] ~ 2,
-      levelColour==levs[3] ~ 3,
-      TRUE ~ 0
-    )
+    levelColour==levs[1] ~ 1,
+    levelColour==levs[2] ~ 2,
+    levelColour==levs[3] ~ 3,
+    TRUE ~ 0
+  )
 
   # Check barColour variable and that there are enough colours in the palette for barColour
   if(!(barColour %in% c(names(INX), "none"))) stop("barColour name not in the dataset", call.=FALSE)
   if (!(barColour=="none")) {
-      INX$barColour <- INX[[barColour]]
+    INX$barColour <- INX[[barColour]]
     if (!(class(INX$barColour) %in% c("character", "factor"))) {
       stop("barColour should be of class character or factor", call. = FALSE)
-      }
-      lgC <- length(unique(INX$barColour))
-           if (lgC > length(gcpal)) {
-        set.seed(4711)
-        #gcpal2 <- randomcoloR::distinctColorPalette(lgC)
-        gcpal2 <- sample(colorspace::qualitative_hcl(n = lgC, l=80))
-      } else {
-      gcpal2 <- gcpal
-      }
     }
+    lgC <- length(unique(INX$barColour))
+    if (lgC > length(gcpal)) {
+      set.seed(4711)
+      gcpal2 <- sample(colorspace::qualitative_hcl(n = lgC, l = 80))
+    } else {
+      gcpal2 <- gcpal
+    }
+  }
 
- # Check, if barColour is not a grouping variable, whether it can be used
-    if(glev > 0) {
+  # Check, if barColour is not a grouping variable, whether it can be used
+  if(glev > 0) {
     txy <- table(INX[, c(levs[glev], "barColour")])
     txyd <- data.frame(txy)
- # You want only 1 entry in each row of the table
+    # You want only 1 entry in each row of the table
     if(sum(txyd$Freq>0) > dim(txy)[1]) {
-    stop(" the barColour variable cannot be used for colouring the levelColour level", call. = FALSE)
+      stop(" the barColour variable cannot be used for colouring the levelColour level", call. = FALSE)
     }
-    }
+  }
 
 
   # Calculate the cumulatives for the three levels (c1F, c2F, c3F)
@@ -84,21 +83,21 @@ ud_plot <- function(outPrep, b=0, totperc="yes", vscale=NULL, labelvar=NULL,
   if (glev==1) INX1 <- INX %>% mutate(totp=100*(sum(wt*v2)/sum(wt*v1)-1)) %>% group_by(c1F) %>%
     summarise(base=sum(wt*v1), perc=100*(sum(wt*v2)/base-1), totp=mean(totp), barColour=unique(barColour)) %>% ungroup() %>%
     mutate(cumX=cumsum(base))
-    low1 <- min(INX1$perc)
-    high1 <- max(INX1$perc)
+  low1 <- min(INX1$perc)
+  high1 <- max(INX1$perc)
   if (lc > 1) {
     if (!(glev==2)) INX2 <- INX %>% group_by(c1F, c2F) %>% summarise(mc2base=sum(wt*v1), mc2perc=100*(sum(wt*v2)/mc2base-1)) %>%
-      ungroup() %>% mutate(c2s=cumsum(mc2base))
-     if (glev==2) INX2 <- INX %>% group_by(c1F, c2F) %>% summarise(mc2base=sum(wt*v1), mc2perc=100*(sum(wt*v2)/mc2base-1), barColour=unique(barColour)) %>%
-      ungroup() %>% mutate(c2s=cumsum(mc2base))
+        ungroup() %>% mutate(c2s=cumsum(mc2base))
+    if (glev==2) INX2 <- INX %>% group_by(c1F, c2F) %>% summarise(mc2base=sum(wt*v1), mc2perc=100*(sum(wt*v2)/mc2base-1), barColour=unique(barColour)) %>%
+        ungroup() %>% mutate(c2s=cumsum(mc2base))
     low2 <- min(INX2$mc2perc)
     high2 <- max(INX2$mc2perc)
   }
   if (lc==3) {
     if (!(glev==3)) INX3 <- INX %>% group_by(c1F, c2F, c3F) %>% summarise(mc3base=sum(wt*v1), mc3perc=100*(sum(wt*v2)/mc3base-1)) %>%
-      ungroup() %>% mutate(c3s=cumsum(mc3base))
-        if (glev==3) INX3 <- INX %>% group_by(c1F, c2F, c3F) %>% summarise(mc3base=sum(wt*v1), mc3perc=100*(sum(wt*v2)/mc3base-1), barColour=unique(barColour)) %>%
-      ungroup() %>% mutate(c3s=cumsum(mc3base))
+        ungroup() %>% mutate(c3s=cumsum(mc3base))
+    if (glev==3) INX3 <- INX %>% group_by(c1F, c2F, c3F) %>% summarise(mc3base=sum(wt*v1), mc3perc=100*(sum(wt*v2)/mc3base-1), barColour=unique(barColour)) %>%
+        ungroup() %>% mutate(c3s=cumsum(mc3base))
     low3 <- min(INX3$mc3perc)
     high3 <- max(INX3$mc3perc)
   }
@@ -107,12 +106,12 @@ ud_plot <- function(outPrep, b=0, totperc="yes", vscale=NULL, labelvar=NULL,
   # If you want a legend   + theme(legend.title=element_blank(), legend.position="bottom")
   h1 <- ggplot(INX1, aes(xmin=lag(cumX, default=0), xmax=cumX, ymin=b, ymax=perc))
   if (glev==1) {
-  h1 <- h1 + geom_rect(aes(fill=barColour), col=cy[2]) + theme(legend.title=element_blank(), legend.position="bottom") + scale_fill_manual(values=gcpal2)
-      }
-  if (!(glev==1)) {
-  h1 <- h1 + geom_rect(fill=cy[1], col=cy[2])
+    h1 <- h1 + geom_rect(aes(fill=barColour), col=cy[2]) + theme(legend.title=element_blank(), legend.position="bottom") + scale_fill_manual(values=gcpal2)
   }
-  if (length(vscale)==2) h1 <- h1  + coord_cartesian(ylim=c(vscale[1], vscale[2]))
+  if (!(glev==1)) {
+    h1 <- h1 + geom_rect(fill=cy[1], col=cy[2])
+  }
+#  if (length(vscale)==2) h1 <- h1  + coord_cartesian(ylim=c(vscale[1], vscale[2]))
   if (totperc=="yes") h4 <- h1 + geom_hline(yintercept=INX1$totp, linetype="dashed", col=cy[3])
   if (totperc=="no") h4 <- h1
   if (lc==2) {
@@ -130,6 +129,7 @@ ud_plot <- function(outPrep, b=0, totperc="yes", vscale=NULL, labelvar=NULL,
     if (totperc=="no") h4 <- h3
   }
   h5 <- h4 + theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())
+  if (length(vscale)==2) h5 <- h5  + coord_cartesian(ylim=c(vscale[1], vscale[2]))
 
   # With labels
   if (lv > 0) {
@@ -150,8 +150,8 @@ ud_plot <- function(outPrep, b=0, totperc="yes", vscale=NULL, labelvar=NULL,
       highA <- max(high1, high2, high3)
     }
     if (length(vscale)==2) {
-      lowA <- max(vscale[1], lowA)
-      highA <- min(vscale[2], highA)
+      lowA <- vscale[1]
+      highA <- vscale[2]
     }
     vmin <- round(lowA-INXlab$mx/2, -1)
     if (vmin >= min(lowA, b)) vmin <- min(vmin, b) - 10
@@ -159,14 +159,14 @@ ud_plot <- function(outPrep, b=0, totperc="yes", vscale=NULL, labelvar=NULL,
 
     # Prepare labelled plot
     if (lc==1) {
-      h5l <- h4 + ylim(vmin, vmax) + geom_text(data=INX1, aes(x = 0.5*(lag(cumX, default=0) + cumX), y = vmin, label = c1F), size=3, hjust=0, check_overlap=TRUE, inherit.aes=FALSE) + theme(axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + coord_flip()
+      h5l <- h4 + geom_text(data=INX1, aes(x = 0.5*(lag(cumX, default=0) + cumX), y = vmin, label = c1F), size=3, hjust=0, check_overlap=TRUE, inherit.aes=FALSE) + theme(axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + coord_flip(ylim=c(vmin, vmax))
     }
     if (lc > 1) {
       if ((lc==2 & labelvar==levs[1])|(lc==3 & labelvar==levs[1])) {
-        h5l <- h4 + ylim(vmin, vmax) + geom_text(data=INX1, aes(x = 0.5*(lag(cumX, default=0) + cumX), y = vmin, label = c1F), size=3, hjust=0, check_overlap=TRUE, inherit.aes=FALSE) + theme(axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + coord_flip()
+        h5l <- h4 + geom_text(data=INX1, aes(x = 0.5*(lag(cumX, default=0) + cumX), y = vmin, label = c1F), size=3, hjust=0, check_overlap=TRUE, inherit.aes=FALSE) + theme(axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + coord_flip(ylim=c(vmin, vmax))
       }
       if (lc > 1 & labelvar==levs[2]) {
-        h5l <- h4 + ylim(vmin, vmax) + geom_text(data=INX2, aes(x = 0.5*(lag(c2s, default=0) + c2s), y = vmin, label = c2F), size=3, hjust=0, check_overlap=TRUE, inherit.aes=FALSE) + theme(axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + coord_flip()
+        h5l <- h4 + geom_text(data=INX2, aes(x = 0.5*(lag(c2s, default=0) + c2s), y = vmin, label = c2F), size=3, hjust=0, check_overlap=TRUE, inherit.aes=FALSE) + theme(axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + coord_flip(ylim=c(vmin, vmax))
       }
     }
   }
