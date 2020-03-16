@@ -33,6 +33,10 @@ ud_prep <- function(data, weight=1, v1, v2, levs, sortLev, reverse=c(FALSE, FALS
 
   IND$v1 <- IND[[v1]]
   IND$v2 <- IND[[v2]]
+  
+  # Replace NAs in v1 and v2 with 0
+  IND[is.na(IND$v1), v1] <- 0
+  IND[is.na(IND$v2), v2] <- 0
 
   if (min(IND$v1) < 0)
     stop("initial values should be non-negative", call.=FALSE)
@@ -64,14 +68,14 @@ ud_prep <- function(data, weight=1, v1, v2, levs, sortLev, reverse=c(FALSE, FALS
   ox <- intersect(sortings, sortLev)
   if (!setequal(ox, sortLev))
     stop("unavailable sorting(s) requested: ", paste(setdiff(sortLev, ox), collapse = ", "), call.=FALSE)
-  
+
   # Check reverse (of orderings)
   lr <- length(reverse)
   if (lr < lo)
     stop("Not enough reverse parameters have been specified.  There should be as many as the number of sortings.", call.=FALSE)
   if (!(is.logical(reverse)))
     stop("reverse parameters must be either TRUE or FALSE", call.=FALSE)
- 
+
   # Set up grouping variables as factors and check nos of unique values in each level
   # Use unique so that it applies to all levels (ie numbers of categories at higher levels)
   namesGf <- paste0("c", 1:lc, "F")
@@ -235,26 +239,26 @@ ud_prep <- function(data, weight=1, v1, v2, levs, sortLev, reverse=c(FALSE, FALS
 fsort <- function(data = INX, sortL, rev) {
   data$.sv_ <- data[[paste0("c1", sortL)]]
   if(rev) {
-  data %>% arrange(desc(.sv_)) %>% select(-.sv_) %>% mutate(c1F = fct_inorder(c1F))
+    data %>% arrange(desc(.sv_)) %>% select(-.sv_) %>% mutate(c1F = fct_inorder(c1F))
   } else {
-  data %>% arrange(.sv_) %>% select(-.sv_) %>% mutate(c1F = fct_inorder(c1F))
+    data %>% arrange(.sv_) %>% select(-.sv_) %>% mutate(c1F = fct_inorder(c1F))
   }
 }
 
 fsort2 <- function(data = INX, sortL, rev) {
   data$.sv_ <- data[[paste0("c2", sortL)]]
   if(rev) {
-   data %>% arrange(c1F, desc(.sv_)) %>% select(-.sv_) %>% mutate(c2F = fct_inorder(c2F))
+    data %>% arrange(c1F, desc(.sv_)) %>% select(-.sv_) %>% mutate(c2F = fct_inorder(c2F))
   } else {
-  data %>% arrange(c1F, .sv_) %>% select(-.sv_) %>% mutate(c2F = fct_inorder(c2F))
-}
+    data %>% arrange(c1F, .sv_) %>% select(-.sv_) %>% mutate(c2F = fct_inorder(c2F))
+  }
 }
 
 fsort3 <- function(data = INX, sortL, rev) {
   data$.sv_ <- data[[paste0("c3", sortL)]]
   if(rev) {
-  data %>% arrange(c1F, c2F, desc(.sv_)) %>% select(-.sv_) %>% mutate(c3F = fct_inorder(c3F))
-  } else {  
-  data %>% arrange(c1F, c2F, .sv_) %>% select(-.sv_) %>% mutate(c3F = fct_inorder(c3F))
-}
+    data %>% arrange(c1F, c2F, desc(.sv_)) %>% select(-.sv_) %>% mutate(c3F = fct_inorder(c3F))
+  } else {
+    data %>% arrange(c1F, c2F, .sv_) %>% select(-.sv_) %>% mutate(c3F = fct_inorder(c3F))
+  }
 }
